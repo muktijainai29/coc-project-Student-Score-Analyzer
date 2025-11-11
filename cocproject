@@ -1,0 +1,61 @@
+#include <stdio.h>
+
+//  Compute the average of all scores
+float computeAvg(int data[], int length) {
+    int accumulator = 0;
+    for (int index = 0; index < length; index++) {
+        accumulator += data[index];
+    }
+    return (float)accumulator / length;
+}
+
+//  Identify the maximum score
+int extractMaximum(int data[], int length) {
+    int top = data[0];
+    for (int index = 1; index < length; index++) {
+        if (data[index] > top) {
+            top = data[index];
+        }
+    }
+    return top;
+}
+
+//  Identify the minimum score
+int extractMinimum(int data[], int length) {
+    int bottom = data[0];
+    for (int index = 1; index < length; index++) {
+        if (data[index] < bottom) {
+            bottom = data[index];
+        }
+    }
+    return bottom;
+}
+
+int main() {
+    int totalnumberofEntries;
+
+    printf(" Score Analyzer is being  Initialized\n");
+    printf("Enter the number of student for which scores are to process: ");
+    scanf("%d", &totalnumberofEntries);
+
+    int marks[totalnumberofEntries];
+
+    //  Collect input scores
+    for (int i = 0; i < totalnumberofEntries; i++) {
+        printf("Enter score for student %d: ", i + 1);
+        scanf("%d", &marks[i]);
+    }
+
+    //  Perform analysis
+    float avg = computeAvg(marks, totalnumberofEntries);
+    int maxScore = extractMaximum(marks, totalnumberofEntries);
+    int minScore = extractMinimum(marks, totalnumberofEntries);
+
+    //  Display results
+    printf("\n Analysis Report:\n");
+    printf("Average Score: %.2f\n", avg);
+    printf("Top Score: %d\n", maxScore);
+    printf("Lowest Score: %d\n", minScore);
+
+    return 0;
+}
